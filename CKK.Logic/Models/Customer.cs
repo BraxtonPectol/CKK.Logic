@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CKK.Logic
+namespace CKK.Logic.Models
 {
-    internal class Product
+    internal class Customer
     {
         private int Id;
         private string Name;
-        private decimal Price;
+        private string Address;
         public void SetId(int id)
         {
             Id = id;
@@ -27,17 +27,14 @@ namespace CKK.Logic
         {
             return Name;
         }
-        public void SetPrice(decimal price)
+        public void SetAddress(string address)
         {
-            Price = price;
+            Address = address;
         }
-        public decimal GetPrice()
+        public string GetAddress()
         {
-            return Price;
+            return Address;
         }
 
     }
 }
-
-    
-

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CKK.Logic
+namespace CKK.Logic.Models
 {
     internal class ShoppingCartItem
     {
@@ -27,7 +27,7 @@ namespace CKK.Logic
             return Product;
         }
 
-        public ShoppingCartItem (Product product, int quantity)
+        public ShoppingCartItem(Product product, int quantity)
         {
             Product = product;
             Quantity = quantity;
