@@ -10,10 +10,10 @@ namespace CKK.Logic.Models
     {
         private int id;
         public void SetId(int Id) { id = Id; }
-        public int Id { get { return id; } }
+        public int GetId() { return id; }
         private string name;
-        public void setName(string Name) { name = Name; }
-        public string Name { get { return name; } }
+        public void SetName(string Name) { name = Name; }
+        public string GetName() { return name; }
         public Product Product1;
         public Product Product2;
         public Product Product3;
