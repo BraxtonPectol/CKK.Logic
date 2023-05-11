@@ -37,7 +37,7 @@ namespace CKK.Logic.Models
             if (productNumber == 3) { return Product3; }
             else { return null; }
         }
-        public Product FindStoreItemByld(int id)
+        public Product FindStoreItemById(int id)
         {
             if (id == Product1.GetId()) { return Product1; }
             if (id == Product2.GetId()) {  return Product2; }
