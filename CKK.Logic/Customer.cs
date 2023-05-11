@@ -8,8 +8,33 @@ namespace CKK.Logic
 {
     internal class Customer
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Address { get; set; }
+        private int Id;
+        private string Name;
+        private string Address;
+        public void SetId(int id)
+        {
+            Id = id;
+        }
+        public int GetId()
+        {
+            return Id;
+        }
+        public void SetName(string name)
+        {
+           Name = name;
+        }
+        public string GetName()
+        {
+            return Name;
+        }
+        public void SetAddress(string address)
+        {
+            Address = address;
+        }
+        public string GetAddress()
+        {
+            return Address;
+        }
+
     }
 }

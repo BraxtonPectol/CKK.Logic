@@ -8,8 +8,24 @@ namespace CKK.Logic
 {
     internal class StoreItem
     {
-        public Product Product { get; set; }
-        public int Quantity { get; set; }
+        private Product Product;
+        private int Quantity;
+        public void SetQuantity(int quantity)
+        {
+            Quantity = quantity;
+        }
+        public int GetQuantity()
+        {
+            return Quantity;
+        }
+        public void SetProduct(Product prodcut)
+        {
+            Product = prodcut;
+        }
+        public Product GetProduct()
+        {
+            return Product;
+        }
 
         public StoreItem(Product product, int quantity)
         {
