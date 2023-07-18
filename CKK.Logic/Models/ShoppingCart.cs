@@ -51,10 +51,11 @@ namespace CKK.Logic.Models
                     Products[i].SetQuantity(quantity);
                     return Products[i];
                 }
+                
             }
             //adds product if not present in current stock
             Products.Add(new ShoppingCartItem(prod, quantity));
-            return Products[0];
+            return Products.Last();
         }
         public ShoppingCartItem RemoveProduct(int id, int quantity)
         {
@@ -65,6 +66,7 @@ namespace CKK.Logic.Models
                     if (Products[i].GetProduct().GetId() == id)
                     {
                         Products[i].SetQuantity(--quantity);
+                        return Products[i];
                     }
                 }
 

@@ -35,7 +35,7 @@ namespace CKK.Logic.Models
             }
             //adds product if not present in current stock
             items.Add(new StoreItem(prod, quantity));
-            return items[0];
+            return items.Last();
 
 
         }
