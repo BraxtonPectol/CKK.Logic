@@ -14,35 +14,58 @@ namespace CKK.Logic.Models
         private string name;
         public void SetName(string Name) { name = Name; }
         public string GetName() { return name; }
-        public Product Product1;
-        public Product Product2;
-        public Product Product3;
 
-        public void AddStoreItem(Product prod)
+        private List<StoreItem> items = new List<StoreItem>();
+        public StoreItem AddStoreItem(Product prod, int quantity)
         {
-            if (Product1 == null){ Product1 = prod; }
-            else if (Product2 == null){ Product2 = prod; }
-            else if (Product3 == null){ Product3 = prod; }
+            //checks if stock is empty
+            if (items.Count == 0)
+            {
+                items.Add(new StoreItem(prod, quantity));
+                return items[0];
+            }
+            //checks if product is already in store
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].GetProduct().GetId() == prod.GetId())
+                {
+                    items[i].SetQuantity(quantity);
+                    return items[i];
+                }
+            }
+            //adds product if not present in current stock
+            items.Add(new StoreItem(prod, quantity));
+            return items[0];
+
+
         }
-        public void RemoveStoreItem(int productNum)
+        public StoreItem RemoveStoreItem(int id, int quantity)
         {
-            if (productNum == 1) { Product1 = null; }
-            if (productNum == 2) { Product2 = null; }
-            if (productNum == 3) { Product3 = null; }
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].GetProduct().GetId() == id)
+                {
+                    items[i].SetQuantity(items[i].GetQuantity() - quantity);
+                    return items[i];
+                }
+            }
+            return null;
         }
-        public Product GetStoreItem(int productNumber)
+        public List<StoreItem> GetStoreItems()
         {
-            if (productNumber == 1) { return Product1; }
-            if (productNumber == 2) { return Product2; }
-            if (productNumber == 3) { return Product3; }
-            else { return null; }
+            return items;
         }
-        public Product FindStoreItemById(int id)
+        public StoreItem FindStoreItemById(int id)
         {
-            if (id == Product1.GetId()) { return Product1; }
-            if (id == Product2.GetId()) {  return Product2; }
-            if (id == Product3.GetId()) { return Product3; }
-            else { return null; }
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].GetProduct().GetId() == id)
+                {
+
+                    return items[i];
+                }
+            }
+            return null;
         }
 
     }
