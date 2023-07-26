@@ -18,6 +18,11 @@ namespace CKK.Logic.Models
         private List<StoreItem> items = new List<StoreItem>();
         public StoreItem AddStoreItem(Product prod, int quantity)
         {
+            if (quantity < 0)
+            {
+                return null;
+            }
+            
             //checks if stock is empty
             if (items.Count == 0)
             {
@@ -29,7 +34,7 @@ namespace CKK.Logic.Models
             {
                 if (items[i].GetProduct().GetId() == prod.GetId())
                 {
-                    items[i].SetQuantity(quantity);
+                    items[i].SetQuantity(items[i].GetQuantity() + quantity);
                     return items[i];
                 }
             }
@@ -41,10 +46,20 @@ namespace CKK.Logic.Models
         }
         public StoreItem RemoveStoreItem(int id, int quantity)
         {
+            if (quantity < 0)
+            {
+                return null;
+            }
+            
             for (int i = 0; i < items.Count; i++)
             {
                 if (items[i].GetProduct().GetId() == id)
                 {
+                    if(items[i].GetQuantity() - quantity <= 0)
+                    {
+                        items[i].SetQuantity(0);
+                        return items[i];
+                    }
                     items[i].SetQuantity(items[i].GetQuantity() - quantity);
                     return items[i];
                 }
@@ -57,9 +72,10 @@ namespace CKK.Logic.Models
         }
         public StoreItem FindStoreItemById(int id)
         {
+            List<int> ids = items.Select(x => x.GetProduct().GetId()).ToList();
             for (int i = 0; i < items.Count; i++)
             {
-                if (items[i].GetProduct().GetId() == id)
+                if (ids[i] == id)
                 {
 
                     return items[i];

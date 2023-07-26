@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,28 +16,31 @@ namespace CKK.Logic.Models
         {
             Customer = cust;
         }
-        public int GetCutomerid()
+        public int GetCutomerId()
         {
             return Customer.GetId();
         }
+        //gpbid not returning null when expected to
         public ShoppingCartItem GetProductById(int id)
         {
-            for (int i = 0; i < Products.Count; i++)
+            List<int> SampleData = Products.Select(x => x.GetProduct().GetId()).ToList();
+            for (int i = 0; i < SampleData.Count; i++)
             {
-                if (Products[i].GetProduct().GetId() == id)
+                if (SampleData[i] == id)
                 {
                     return Products[i];
                 }
             }
             return null;
         }
-        public ShoppingCartItem AddProduct(Product prod)
-        {
-            return AddProduct(prod, 1);
-
-        }
         public ShoppingCartItem AddProduct(Product prod, int quantity)
         {
+            //checks validity of argument
+            if(quantity < 0)
+            {
+                return null;
+            }
+            
             //checks if stock is empty
             if (Products.Count == 0)
             {
@@ -48,7 +52,7 @@ namespace CKK.Logic.Models
             {
                 if (Products[i].GetProduct().GetId() == prod.GetId())
                 {
-                    Products[i].SetQuantity(quantity);
+                    Products[i].SetQuantity(Products[i].GetQuantity() + quantity);
                     return Products[i];
                 }
                 
@@ -59,25 +63,32 @@ namespace CKK.Logic.Models
         }
         public ShoppingCartItem RemoveProduct(int id, int quantity)
         {
-            if (quantity > 0)
+            if (quantity < 0)
             {
-                for (int i = 0; i < Products.Count; i++)
+                return null;
+            }
+            for (int i = 0; i < Products.Count; i++)
                 {
-                    if (Products[i].GetProduct().GetId() == id)
+                if (Products[i].GetProduct().GetId() == id)
+                {
+                    Products[i].SetQuantity(Products[i].GetQuantity() - quantity);
+                    
+                    if (Products[i].GetQuantity() <= 0)
                     {
-                        Products[i].SetQuantity(--quantity);
-                        return Products[i];
+                        Products.Remove(Products[i]);
+                        return new ShoppingCartItem(null, 0);
                     }
+                    return Products[i];
                 }
+            }
 
                 return null;
 
-            }
-            return null;
+           
         }
         public decimal GetTotal()
         {
-            decimal total = Products.Sum(x => x.GetProduct().GetPrice());
+            decimal total = Products.Sum(x => x.GetTotal());
             return total;
         }
         public List<ShoppingCartItem> GetProducts()
