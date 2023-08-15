@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CKK.Logic.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,14 +7,9 @@ using System.Threading.Tasks;
 
 namespace CKK.Logic.Models
 {
-    public class Store
+    public class Store: Entity
     {
-        private int id;
-        public void SetId(int Id) { id = Id; }
-        public int GetId() { return id; }
-        private string name;
-        public void SetName(string Name) { name = Name; }
-        public string GetName() { return name; }
+        
 
         private List<StoreItem> items = new List<StoreItem>();
         public StoreItem AddStoreItem(Product prod, int quantity)
@@ -32,9 +28,9 @@ namespace CKK.Logic.Models
             //checks if product is already in store
             for (int i = 0; i < items.Count; i++)
             {
-                if (items[i].GetProduct().GetId() == prod.GetId())
+                if (items[i].Product.Id == prod.Id)
                 {
-                    items[i].SetQuantity(items[i].GetQuantity() + quantity);
+                    items[i].Quantity = (items[i].Quantity + quantity);
                     return items[i];
                 }
             }
@@ -53,14 +49,14 @@ namespace CKK.Logic.Models
             
             for (int i = 0; i < items.Count; i++)
             {
-                if (items[i].GetProduct().GetId() == id)
+                if (items[i].Product.Id == id)
                 {
-                    if(items[i].GetQuantity() - quantity <= 0)
+                    if(items[i].Quantity - quantity <= 0)
                     {
-                        items[i].SetQuantity(0);
+                        items[i].Quantity = (0);
                         return items[i];
                     }
-                    items[i].SetQuantity(items[i].GetQuantity() - quantity);
+                    items[i].Quantity = (items[i].Quantity - quantity);
                     return items[i];
                 }
             }
@@ -72,7 +68,7 @@ namespace CKK.Logic.Models
         }
         public StoreItem FindStoreItemById(int id)
         {
-            List<int> ids = items.Select(x => x.GetProduct().GetId()).ToList();
+            List<int> ids = items.Select(x => x.Product.Id).ToList();
             for (int i = 0; i < items.Count; i++)
             {
                 if (ids[i] == id)

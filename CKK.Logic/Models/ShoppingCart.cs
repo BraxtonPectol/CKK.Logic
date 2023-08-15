@@ -9,8 +9,8 @@ namespace CKK.Logic.Models
 {
     public class ShoppingCart
     {
-        private Customer Customer;
-        private List<ShoppingCartItem> Products = new List<ShoppingCartItem>();
+        public Customer Customer { get; set; }
+        public List<ShoppingCartItem> Products { get; set; }
 
         public ShoppingCart(Customer cust)
         {
@@ -18,12 +18,12 @@ namespace CKK.Logic.Models
         }
         public int GetCutomerId()
         {
-            return Customer.GetId();
+            return Customer.Id;
         }
         //gpbid not returning null when expected to
         public ShoppingCartItem GetProductById(int id)
         {
-            List<int> SampleData = Products.Select(x => x.GetProduct().GetId()).ToList();
+            List<int> SampleData = Products.Select(x => x.Product.Id).ToList();
             for (int i = 0; i < SampleData.Count; i++)
             {
                 if (SampleData[i] == id)
@@ -50,9 +50,9 @@ namespace CKK.Logic.Models
             //checks if product is already in store
             for (int i = 0; i < Products.Count; i++)
             {
-                if (Products[i].GetProduct().GetId() == prod.GetId())
+                if (Products[i].Product.Id == prod.Id)
                 {
-                    Products[i].SetQuantity(Products[i].GetQuantity() + quantity);
+                    Products[i].Quantity = (Products[i].Quantity + quantity);
                     return Products[i];
                 }
                 
@@ -69,11 +69,11 @@ namespace CKK.Logic.Models
             }
             for (int i = 0; i < Products.Count; i++)
                 {
-                if (Products[i].GetProduct().GetId() == id)
+                if (Products[i].Product.Id == id)
                 {
-                    Products[i].SetQuantity(Products[i].GetQuantity() - quantity);
+                    Products[i].Quantity = (Products[i].Quantity - quantity);
                     
-                    if (Products[i].GetQuantity() <= 0)
+                    if (Products[i].Quantity <= 0)
                     {
                         Products.Remove(Products[i]);
                         return new ShoppingCartItem(null, 0);
