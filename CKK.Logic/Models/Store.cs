@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace CKK.Logic.Models
 {
-    public class Store : Entity
+    public class Store : Entity, IStore
     {
-        
 
-        private List<StoreItem> items = new List<StoreItem>();
+
+        public List<StoreItem> items { get; set; }
         public StoreItem AddStoreItem(Product prod, int quantity)
         {
             if (quantity < 0)
