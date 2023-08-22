@@ -9,6 +9,7 @@ namespace CKK.Logic.Interfaces
 {
     public interface IStore
     {
+        
         public List<StoreItem> items { get; set; }
         public StoreItem AddStoreItem(Product prod, int quantity)
         {
