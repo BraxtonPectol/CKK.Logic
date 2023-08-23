@@ -1,4 +1,5 @@
-﻿using CKK.Logic.Interfaces;
+﻿using CKK.Logic.Exceptions;
+using CKK.Logic.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,9 @@ namespace CKK.Logic.Models
         public List<StoreItem> items { get; set; }
         public StoreItem AddStoreItem(Product prod, int quantity)
         {
-            if (quantity < 0)
+            if (quantity <= 0)
             {
-                return null;
+                throw new InventoryItemStockTooLowException();
             }
             
             //checks if stock is empty
@@ -44,7 +45,7 @@ namespace CKK.Logic.Models
         {
             if (quantity < 0)
             {
-                return null;
+                throw new ArgumentOutOfRangeException();
             }
             
             for (int i = 0; i < items.Count; i++)
@@ -60,7 +61,7 @@ namespace CKK.Logic.Models
                     return items[i];
                 }
             }
-            return null;
+            throw new ProductDoesNotExistException();
         }
         public List<StoreItem> GetStoreItems()
         {
@@ -68,6 +69,10 @@ namespace CKK.Logic.Models
         }
         public StoreItem FindStoreItemById(int id)
         {
+            if (id < 0)
+            {
+                throw new InvalidIdException();
+            }
             List<int> ids = items.Select(x => x.Product.Id).ToList();
             for (int i = 0; i < items.Count; i++)
             {
