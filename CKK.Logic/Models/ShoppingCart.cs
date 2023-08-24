@@ -11,27 +11,32 @@ namespace CKK.Logic.Models
 {
     public class ShoppingCart : IShoppingCart
     {
+        
+        
         public Customer Customer { get; set; }
         public List<ShoppingCartItem> Products { get; set; }
 
         public ShoppingCart(Customer cust)
         {
             Customer = cust;
+            Products = new List<ShoppingCartItem>();
         }
-        public int GetCutomerId()
+        public int GetCustomerId()
         {
             return Customer.Id;
         }
         //gpbid not returning null when expected to
         public ShoppingCartItem GetProductById(int id)
         {
+            if (id < 0)
+            {
+                throw new InvalidIdException();
+                return null;
+            }
             List<int> SampleData = Products.Select(x => x.Product.Id).ToList();
             for (int i = 0; i < SampleData.Count; i++)
             {
-                if (id < 0)
-                {
-                    throw new InvalidIdException();
-                }
+                
                 if (SampleData[i] == id)
                 {
                     return Products[i];
@@ -77,13 +82,14 @@ namespace CKK.Logic.Models
                 {
                 if (Products[i].Product.Id == id)
                 {
-                    Products[i].Quantity = (Products[i].Quantity - quantity);
                     
-                    if (Products[i].Quantity <= 0)
+                    
+                    if (Products[i].Quantity - quantity <= 0)
                     {
                         Products.Remove(Products[i]);
                         return new ShoppingCartItem(null, 0);
                     }
+                    Products[i].Quantity = (Products[i].Quantity - quantity);
                     return Products[i];
                 }
             }

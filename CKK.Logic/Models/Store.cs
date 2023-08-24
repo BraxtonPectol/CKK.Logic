@@ -10,7 +10,10 @@ namespace CKK.Logic.Models
 {
     public class Store : Entity, IStore
     {
-
+        public Store()
+        {
+            items = new List<StoreItem>();
+        }
 
         public List<StoreItem> items { get; set; }
         public StoreItem AddStoreItem(Product prod, int quantity)
@@ -18,6 +21,7 @@ namespace CKK.Logic.Models
             if (quantity <= 0)
             {
                 throw new InventoryItemStockTooLowException();
+                
             }
             
             //checks if stock is empty

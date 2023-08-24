@@ -9,7 +9,8 @@ namespace CKK.Logic.Interfaces
 {
     public abstract class Entity
     {
-        public int Id { get { return Id; } set { if (value < 0) { throw new InvalidIdException(); } Id = value; } }
+        private int id;
+        public int Id { get { return id; } set { if (value < 0) { throw new InvalidIdException(); } id = value; } }
         public string Name { get; set; }
     }
 }
