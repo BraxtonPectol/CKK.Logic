@@ -12,6 +12,7 @@
         <TextBox x:Name="Password" HorizontalAlignment="Center" Margin="0,287,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="236" Height="20"/>
         <Label Content="Username" HorizontalAlignment="Left" Margin="282,214,0,0" VerticalAlignment="Top"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="282,261,0,0" VerticalAlignment="Top"/>
+        <Button Content="Login" HorizontalAlignment="Center" Margin="0,312,0,0" VerticalAlignment="Top" Height="26" Width="76" Click="Button_Click"/>
 
     </Grid>
 </Window>

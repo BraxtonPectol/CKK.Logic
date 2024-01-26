@@ -23,7 +23,16 @@ namespace CKK.UI
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            
 
         }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var inD = new InventoryDis();
+            this.Close();
+            inD.ShowDialog();
+        }
+
+
     }
 }
