@@ -18,16 +18,19 @@ namespace CKK.Logic.Models
         public List<StoreItem> items { get; set; }
         public StoreItem AddStoreItem(Product prod, int quantity)
         {
+            
             if (quantity <= 0)
             {
                 throw new InventoryItemStockTooLowException();
                 
             }
-            
+            int idcheck = 1;
             //checks if stock is empty
             if (items.Count == 0)
             {
                 items.Add(new StoreItem(prod, quantity));
+                items[0].Product.Id = idcheck;
+                idcheck++;
                 return items[0];
             }
             //checks if product is already in store
@@ -41,6 +44,8 @@ namespace CKK.Logic.Models
             }
             //adds product if not present in current stock
             items.Add(new StoreItem(prod, quantity));
+            items.Last().Product.Id = idcheck;
+            idcheck++;
             return items.Last();
 
 
@@ -87,6 +92,18 @@ namespace CKK.Logic.Models
                 }
             }
             return null;
+        }
+
+        public void DeleteStoreItem(int id)
+        {
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].Product.Id == id)
+                {
+                    items.RemoveAt(i);
+                }
+            }
+            throw new ProductDoesNotExistException();
         }
 
     }
