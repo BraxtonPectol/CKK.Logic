@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using CKK.Logic.Models;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -28,9 +29,10 @@ namespace CKK.UI
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var inD = new InventoryDis();
+            Store tp = (Store)Application.Current.FindResource("GlobStore");
+            InventoryDis inven=new InventoryDis(tp);
+            inven.Show();
             this.Close();
-            inD.ShowDialog();
         }
 
 

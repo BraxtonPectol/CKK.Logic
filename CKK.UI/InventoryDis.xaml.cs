@@ -25,18 +25,28 @@ namespace CKK.UI
     {
         private IStore _Store;
         public ObservableCollection<StoreItem> _Items { get; private set; }
-        public InventoryDis()
+        public InventoryDis(Store store)
         {
-            _Store = new Store();
+            _Store = store;
             InitializeComponent();
             _Items = new ObservableCollection<StoreItem>();
-           
+            bInventoryList.ItemsSource = _Items;
+            //what is 1bInventoryList?
             RefreshList();
         }
         private void RefreshList()
         {
             _Items.Clear();
-            foreach (StoreItem si in new ObservableCollection<StoreItem>(_Store.GetStoreItems())) _Items.Add(si);
+            foreach (StoreItem si in new ObservableCollection<StoreItem>(_Store.GetStoreItems())) 
+                _Items.Add(si);
         }
+
+        new Product product;
+        /*private void AddNewProductBut_Click(object sender, RoutedEventArgs e)
+        {
+            product.Name = 
+            _Store.AddStoreItem(product.);
+            bInventoryList.Items.Add.
+        }*/
     }
 }
