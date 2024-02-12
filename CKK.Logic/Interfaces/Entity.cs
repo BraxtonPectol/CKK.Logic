@@ -5,8 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace CKK.Logic.Interfaces
 {
+    [Serializable]
+
     public abstract class Entity
     {
         private int id;

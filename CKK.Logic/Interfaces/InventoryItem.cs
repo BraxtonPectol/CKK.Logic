@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace CKK.Logic.Interfaces
 {
+    [Serializable]
+
     public abstract class InventoryItem
     {
         private Product product;

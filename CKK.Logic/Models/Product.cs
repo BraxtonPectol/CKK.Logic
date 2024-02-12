@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace CKK.Logic.Models
 {
+    [Serializable]
+
     public class Product : Entity
     {
 
