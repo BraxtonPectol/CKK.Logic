@@ -19,15 +19,17 @@ namespace CKK.Persistance.Models
     {
 
         //public string filename = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + Path.DirectorySeparatorChar + "Persistance" + Path.DirectorySeparatorChar + "StoreItems.dat";
-        public string filename = @"C:\Users\Braxx\Documents\Persistance\StoreItems.dat";
-        public List<StoreItem> items { get; set; }
+
         private int idCounter;
 
-        
+        public string filename = @"C:\Users\Braxx\Documents\Persistance\StoreItems.dat";
         public FileStore() 
         {
             CreatePath();
+            items = new List<StoreItem>();
+            
         }
+        public List<StoreItem> items { get; set;}
         private void CreatePath()
         {
             try
