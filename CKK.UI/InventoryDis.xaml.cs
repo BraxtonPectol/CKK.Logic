@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,6 @@ namespace CKK.UI
             InitializeComponent();
             _Items = new ObservableCollection<StoreItem>();
             bInventoryList.ItemsSource = _Items;
-            //what is 1bInventoryList?
             RefreshList();
         }
         private void RefreshList()
@@ -41,12 +41,21 @@ namespace CKK.UI
                 _Items.Add(si);
         }
 
-        new Product product;
-        /*private void AddNewProductBut_Click(object sender, RoutedEventArgs e)
+        
+        private void AddNewProductBut_Click(object sender, RoutedEventArgs e)
         {
-            product.Name = 
-            _Store.AddStoreItem(product.);
-            bInventoryList.Items.Add.
-        }*/
+            //Product product = new Product();
+            //product.Name = "Name";
+            //product.Price = 1;
+            //product.Id = 1;
+            //int quan=1;
+            Addproduct productWindow = new Addproduct();
+            productWindow.Show();
+            
+
+        RefreshList();
+        }
+
+        
     }
 }

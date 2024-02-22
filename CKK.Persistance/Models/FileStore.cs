@@ -115,7 +115,6 @@ namespace CKK.Persistance.Models
             Save();
             return items.Last();
 
-
         }
         public StoreItem RemoveStoreItem(int id, int quantity)
         {
