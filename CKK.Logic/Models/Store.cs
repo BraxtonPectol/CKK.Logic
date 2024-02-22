@@ -16,6 +16,7 @@ namespace CKK.Logic.Models
         }
 
         public List<StoreItem> items { get; set; }
+        public int idcheck = 1;
         public StoreItem AddStoreItem(Product prod, int quantity)
         {
             
@@ -24,7 +25,7 @@ namespace CKK.Logic.Models
                 throw new InventoryItemStockTooLowException();
                 
             }
-            int idcheck = 1;
+            
             //checks if stock is empty
             if (items.Count == 0)
             {

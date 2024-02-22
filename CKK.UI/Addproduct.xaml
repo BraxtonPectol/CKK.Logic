@@ -7,15 +7,13 @@
         mc:Ignorable="d"
         Title="Addproduct" Height="450" Width="400">
     <Grid>
-        <TextBox x:Name="Name" HorizontalAlignment="Center" Margin="0,102,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="178" Height="20"/>
-        <TextBox x:Name="Id" HorizontalAlignment="Center" Margin="0,143,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="178" Height="20"/>
+        <TextBox x:Name="Name" HorizontalAlignment="Center" Margin="0,145,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="178" Height="20"/>
         <TextBox x:Name="Price" HorizontalAlignment="Center" Margin="0,186,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="178" Height="20"/>
         <TextBox x:Name="Quantity" HorizontalAlignment="Center" Margin="0,227,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="178" Height="20"/>
-        <Label Content="Name" HorizontalAlignment="Left" Margin="49,99,0,0" VerticalAlignment="Top"/>
-        <Label Content="Id" HorizontalAlignment="Left" Margin="70,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.453,0.092"/>
+        <Label Content="Name" HorizontalAlignment="Left" Margin="49,139,0,0" VerticalAlignment="Top"/>
         <Label Content="Price" HorizontalAlignment="Left" Margin="62,180,0,0" VerticalAlignment="Top"/>
         <Label Content="Quantity" HorizontalAlignment="Left" Margin="49,227,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.541,0.259"/>
-        <Button Content="Submit" HorizontalAlignment="Center" Margin="0,260,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Button Content="Submit" HorizontalAlignment="Center" Margin="0,260,0,0" VerticalAlignment="Top" Click="Button_Click" IsDefault="True"/>
 
     </Grid>
 </Window>

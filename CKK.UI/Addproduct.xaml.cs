@@ -25,18 +25,16 @@ namespace CKK.UI
         {
             InitializeComponent();
         }
-
+        public Product product = new Product();
+        public int quan;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Product product = new Product();
+           
             product.Name = Name.Text;
             product.Price = Convert.ToDecimal(Price.Text);
-            product.Id = Convert.ToInt32(Id.Text);
-            StoreItem item = new StoreItem(product, Convert.ToInt32(Quantity.Text));
+            quan = Convert.ToInt32(Quantity.Text);
+            this.DialogResult = true;
             //((InventoryDis)Application.Current.MainWindow).product = product;
-
-            ((InventoryDis)Application.Current.MainWindow)._Items.Add(item);
-            ((InventoryDis)Application.Current.MainWindow).bInventoryList.Items.Refresh();
             this.Close();
         }
     }

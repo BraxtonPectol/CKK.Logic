@@ -7,21 +7,27 @@
         mc:Ignorable="d"
         Title="InventoryDis" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="SearchByName" HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248"/>
-        <TextBox x:Name="SearchByName_Copy" HorizontalAlignment="Left" Margin="10,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248"/>
+        <TextBox x:Name="SearchByName" HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" KeyDown="SearchByName_KeyDown"/>
+        <TextBox x:Name="SearchId" HorizontalAlignment="Left" Margin="10,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" KeyDown="SearchId_KeyDown"/>
         <Label Content="Search by name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.419,0.255"/>
         <Label Content="Search by id" HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top"/>
         <Button x:Name="AddNewProductBut" Content="Add new product" HorizontalAlignment="Left" Margin="10,367,0,0" VerticalAlignment="Top" Click="AddNewProductBut_Click" />
-        <Button x:Name="RemoveProductBut" Content="Remove product" HorizontalAlignment="Left" Margin="111,367,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="RemoveProductBut" Content="Remove product" HorizontalAlignment="Left" Margin="111,367,0,0" VerticalAlignment="Top" Click="RemoveProductBut_Click"/>
         <ListView x:Name="bInventoryList" Margin="10,105,10,72">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="600" Header="Name" DisplayMemberBinding="{Binding Path=Product.Name}" />
-                    <GridViewColumn Width="75" Header="Id" DisplayMemberBinding="{Binding Path=Product.Id}" />
-                    <GridViewColumn Width="75" Header="Quantity" DisplayMemberBinding="{Binding Path=Quantity}" />
+                    <GridViewColumn Width="625" Header="Name" DisplayMemberBinding="{Binding Path=Product.Name}" />
+                    <GridViewColumn Width="50" Header="Id" DisplayMemberBinding="{Binding Path=Product.Id}" />
+                    <GridViewColumn Width="50" Header="Price" DisplayMemberBinding="{Binding Path=Product.Price}" />
+                    <GridViewColumn Width="50" Header="Quantity" DisplayMemberBinding="{Binding Path=Quantity}" />
                 </GridView>
             </ListView.View>
         </ListView>
+        <TextBox x:Name="SearchByPrice" HorizontalAlignment="Left" Margin="287,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" KeyDown="SearchByPrice_KeyDown"/>
+        <TextBox x:Name="SearchByQuantity" HorizontalAlignment="Left" Margin="287,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" KeyDown="SearchByQuantity_KeyDown"/>
+        <Label Content="Search by Price" HorizontalAlignment="Left" Margin="287,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.419,0.255"/>
+        <Label Content="Search by Quantity" HorizontalAlignment="Left" Margin="287,56,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="Refresh" Content="Refresh List" HorizontalAlignment="Left" Margin="208,367,0,0" VerticalAlignment="Top" Click="Refresh_Click"/>
 
     </Grid>
 </Window>

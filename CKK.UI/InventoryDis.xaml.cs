@@ -49,13 +49,68 @@ namespace CKK.UI
             //product.Price = 1;
             //product.Id = 1;
             //int quan=1;
-            Addproduct productWindow = new Addproduct();
-            productWindow.Show();
-            
 
-        RefreshList();
+            Addproduct productWindow = new Addproduct();
+            //productWindow.product 
+            if(productWindow.ShowDialog() == true)
+            {
+                _Store.AddStoreItem(productWindow.product, productWindow.quan);
+                RefreshList();
+            }
         }
 
-        
+        private void SearchByName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                _Items.Clear();
+                List<StoreItem> x = _Store.GetAllProductsByName(SearchByName.Text);
+                foreach (StoreItem si in x)
+                    _Items.Add(si);
+            }
+            
+        }
+
+        private void SearchId_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                _Items.Clear();
+                StoreItem x = _Store.FindStoreItemById(Convert.ToInt32(SearchByName.Text));
+                _Items.Add(x);
+            }
+        }
+
+        private void SearchByPrice_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                _Items.Clear();
+                List<StoreItem> x = _Store.GetAllProductsByPrice(Convert.ToInt32(SearchByPrice.Text));
+                foreach (StoreItem si in x)
+                    _Items.Add(si);
+            }
+        }
+
+        private void SearchByQuantity_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                _Items.Clear();
+                List<StoreItem> x = _Store.GetAllProductsByQuantity(Convert.ToInt32(SearchByQuantity.Text));
+                foreach (StoreItem si in x)
+                    _Items.Add(si);
+            }
+        }
+
+        private void Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshList();
+        }
+
+        private void RemoveProductBut_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
