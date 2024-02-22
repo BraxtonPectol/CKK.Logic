@@ -158,5 +158,79 @@ namespace CKK.Persistance.Models
             }
             return null;
         }
+        public List<StoreItem> GetAllProductsByName(string key)
+        {
+            if (string.IsNullOrEmpty(key))
+            {
+                return null;
+            }
+            else
+            {
+                List<StoreItem> templist = new List<StoreItem>();
+                char[] chars = key.ToCharArray();
+                for (int i = 0; i < items.Count; i++)
+                {
+                    char[] lichars = items[i].Product.Name.ToCharArray();
+                    if (chars[0] == lichars[0])
+                    {
+                        templist.Add(items[i]);
+                    }
+                }
+                return templist;
+
+            }
+        }
+        public List<StoreItem> GetAllProductsByQuantity(int key)
+        {
+            List<StoreItem> templist = new List<StoreItem>();
+            foreach (var item in items)
+            {
+                if (item.Quantity == key)
+                {
+                    templist.Add(item);
+                }
+            }
+            for (int i = 0; i < templist.Count - 1; i++)
+            {
+                for (int j = 0; j < templist.Count - 1; j++)
+                {
+                    int x = templist[j].Quantity;
+                    int y = templist[j + 1].Quantity;
+                    if (x < y)
+                    {
+                        StoreItem tempitem = templist[j];
+                        templist[j] = templist[j + 1];
+                        templist[j + 1] = tempitem;
+                    }
+                }
+            }
+            return templist;
+        }
+        public List<StoreItem> GetAllProductsByPrice(decimal key)
+        {
+            List<StoreItem> templist = new List<StoreItem>();
+            foreach (var item in items)
+            {
+                if (item.Product.Price == key)
+                {
+                    templist.Add(item);
+                }
+            }
+            for (int i = 0; i < templist.Count - 1; i++)
+            {
+                for (int j = 0; j < templist.Count - 1; j++)
+                {
+                    decimal x = templist[j].Product.Price;
+                    decimal y = templist[j + 1].Product.Price;
+                    if (x < y)
+                    {
+                        StoreItem tempitem = templist[j];
+                        templist[j] = templist[j + 1];
+                        templist[j + 1] = tempitem;
+                    }
+                }
+            }
+            return templist;
+        }
     }
 }
