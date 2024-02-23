@@ -167,6 +167,8 @@ namespace CKK.Logic.Interfaces
        
         public StoreItem FindStoreItemById(int id);
 
+        public void DeleteStoreItem(int id);
+
         public List<StoreItem> GetAllProductsByName(string key);
 
         public List<StoreItem> GetAllProductsByQuantity(int key);

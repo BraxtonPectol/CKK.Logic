@@ -110,7 +110,13 @@ namespace CKK.UI
 
         private void RemoveProductBut_Click(object sender, RoutedEventArgs e)
         {
-
+           Removeproduct productWindow = new Removeproduct();
+            //productWindow.product 
+            if (productWindow.ShowDialog() == true)
+            {
+                _Store.DeleteStoreItem(productWindow.id);
+                RefreshList();
+            }
         }
     }
 }

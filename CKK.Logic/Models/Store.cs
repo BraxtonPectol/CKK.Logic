@@ -97,14 +97,19 @@ namespace CKK.Logic.Models
 
         public void DeleteStoreItem(int id)
         {
+            bool x = false;
             for (int i = 0; i < items.Count; i++)
             {
                 if (items[i].Product.Id == id)
                 {
                     items.RemoveAt(i);
+                    x = true;
                 }
             }
-            throw new ProductDoesNotExistException();
+            if (x == false)
+            {
+                throw new ProductDoesNotExistException();
+            }
         }
         public List<StoreItem> GetAllProductsByName(string key)
         {

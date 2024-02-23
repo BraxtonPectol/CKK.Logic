@@ -23,5 +23,12 @@ namespace CKK.UI
         {
             InitializeComponent();
         }
+        public int id;
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            id = Convert.ToInt32(DeleteId.Text);
+            this.DialogResult = true;
+            this.Close();
+        }
     }
 }
