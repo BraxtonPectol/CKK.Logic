@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace CKK.DB.Interfaces
 {
-    internal interface Interface1
+    public interface IOrderRepository<Order> : IGenericRepository<Order> where Order : class
     {
+        Order GetOrderByCustomerId(int id);
     }
 }
