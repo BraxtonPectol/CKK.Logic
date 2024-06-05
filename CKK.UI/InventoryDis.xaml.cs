@@ -16,32 +16,38 @@ using System.Windows.Shapes;
 using System.Xaml;
 using CKK.Logic.Interfaces;
 using CKK.Logic.Models;
+using CKK.DB.Repository;
+using CKK.DB.UOW;
+using CKK.DB.Interfaces;
 
 namespace CKK.UI
 {
-    /// <summary>
-    /// Interaction logic for InventoryDis.xaml
-    /// </summary>
-    public partial class InventoryDis : Window
+ //<summary>
+ //Interaction logic for InventoryDis.xaml
+ //</summary>
+public partial class InventoryDis : Window
     {
-        private IStore _Store;
-        public ObservableCollection<StoreItem> _Items { get; private set; }
-        public InventoryDis(Store store)
+        public IConnectionFactory conn = new DatabaseConnectionFactory();
+        public UnitOfWork _Store;
+        public ObservableCollection<Product> _Items { get; private set; }
+        public InventoryDis()
         {
-            _Store = store;
+            //_Store = store;
             InitializeComponent();
-            _Items = new ObservableCollection<StoreItem>();
+            _Items = new ObservableCollection<Product>();
             bInventoryList.ItemsSource = _Items;
+            _Store = new UnitOfWork(conn);
+
             RefreshList();
         }
         private void RefreshList()
         {
             _Items.Clear();
-            foreach (StoreItem si in new ObservableCollection<StoreItem>(_Store.GetStoreItems())) 
+            foreach (Product si in new ObservableCollection<Product>(_Store.Products.GetAll()))
                 _Items.Add(si);
         }
 
-        
+
         private void AddNewProductBut_Click(object sender, RoutedEventArgs e)
         {
             //Product product = new Product();
@@ -52,71 +58,71 @@ namespace CKK.UI
 
             Addproduct productWindow = new Addproduct();
             //productWindow.product 
-            if(productWindow.ShowDialog() == true)
+            if (productWindow.ShowDialog() == true)
             {
-                _Store.AddStoreItem(productWindow.product, productWindow.quan);
+                _Store.Products.Add(productWindow.product);
                 RefreshList();
             }
         }
 
         private void SearchByName_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Return)
-            {
-                _Items.Clear();
-                List<StoreItem> x = _Store.GetAllProductsByName(SearchByName.Text);
-                foreach (StoreItem si in x)
-                    _Items.Add(si);
-            }
-            
-        }
+{
+    if (e.Key == Key.Return)
+    {
+        _Items.Clear();
+        List<Product> x = _Store.Products.GetByName(SearchByName.Text);
+        foreach (Product si in x)
+            _Items.Add(si);
+    }
 
-        private void SearchId_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Return)
-            {
-                _Items.Clear();
-                StoreItem x = _Store.FindStoreItemById(Convert.ToInt32(SearchByName.Text));
-                _Items.Add(x);
-            }
-        }
+}
 
-        private void SearchByPrice_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Return)
-            {
-                _Items.Clear();
-                List<StoreItem> x = _Store.GetAllProductsByPrice(Convert.ToInt32(SearchByPrice.Text));
-                foreach (StoreItem si in x)
-                    _Items.Add(si);
-            }
-        }
+private void SearchId_KeyDown(object sender, KeyEventArgs e)
+{
+    if (e.Key == Key.Return)
+    {
+        _Items.Clear();
+        Product x = _Store.Products.GetById(Convert.ToInt32(SearchByName.Text));
+        _Items.Add(x);
+    }
+}
 
-        private void SearchByQuantity_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Return)
-            {
-                _Items.Clear();
-                List<StoreItem> x = _Store.GetAllProductsByQuantity(Convert.ToInt32(SearchByQuantity.Text));
-                foreach (StoreItem si in x)
-                    _Items.Add(si);
-            }
-        }
+private void SearchByPrice_KeyDown(object sender, KeyEventArgs e)
+{
+    //if (e.Key == Key.Return)
+    //{
+    //    _Items.Clear();
+    //    List<StoreItem> x = _Store.GetAllProductsByPrice(Convert.ToInt32(SearchByPrice.Text));
+    //    foreach (StoreItem si in x)
+    //        _Items.Add(si);
+    //}
+}
 
-        private void Refresh_Click(object sender, RoutedEventArgs e)
-        {
-            RefreshList();
-        }
+private void SearchByQuantity_KeyDown(object sender, KeyEventArgs e)
+{
+    //if (e.Key == Key.Return)
+    //{
+    //    _Items.Clear();
+    //    List<Product> x = _Store.Products.Get(Convert.ToInt32(SearchByQuantity.Text));
+    //    foreach (StoreItem si in x)
+    //        _Items.Add(si);
+    //}
+}
 
-        private void RemoveProductBut_Click(object sender, RoutedEventArgs e)
-        {
-           Removeproduct productWindow = new Removeproduct();
-            //productWindow.product 
-            if (productWindow.ShowDialog() == true)
-            {
-                _Store.DeleteStoreItem(productWindow.id);
-                RefreshList();
-            }
-        }
+private void Refresh_Click(object sender, RoutedEventArgs e)
+{
+    RefreshList();
+}
+
+private void RemoveProductBut_Click(object sender, RoutedEventArgs e)
+{
+    Removeproduct productWindow = new Removeproduct();
+    //productWindow.product 
+    if (productWindow.ShowDialog() == true)
+    {
+        _Store.Products.Delete(productWindow.id);
+        RefreshList();
+    }
+}
     }
 }

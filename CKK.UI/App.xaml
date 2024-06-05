@@ -5,6 +5,5 @@
              xmlns:Logic="clr-namespace:CKK.Logic.Models;assembly=CKK.Logic"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Logic:Store x:Key="GlobStore"></Logic:Store>
     </Application.Resources>
 </Application>

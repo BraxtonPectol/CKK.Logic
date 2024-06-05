@@ -16,9 +16,9 @@
         <ListView x:Name="bInventoryList" Margin="10,105,10,72">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="625" Header="Name" DisplayMemberBinding="{Binding Path=Product.Name}" />
-                    <GridViewColumn Width="50" Header="Id" DisplayMemberBinding="{Binding Path=Product.Id}" />
-                    <GridViewColumn Width="50" Header="Price" DisplayMemberBinding="{Binding Path=Product.Price}" />
+                    <GridViewColumn Width="625" Header="Name" DisplayMemberBinding="{Binding Path=Name}" />
+                    <GridViewColumn Width="50" Header="Id" DisplayMemberBinding="{Binding Path=Id}" />
+                    <GridViewColumn Width="50" Header="Price" DisplayMemberBinding="{Binding Path=Price}" />
                     <GridViewColumn Width="50" Header="Quantity" DisplayMemberBinding="{Binding Path=Quantity}" />
                 </GridView>
             </ListView.View>

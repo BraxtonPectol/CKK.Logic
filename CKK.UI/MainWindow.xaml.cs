@@ -1,4 +1,5 @@
 ﻿using CKK.Logic.Models;
+using CKK.DB.UOW;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,9 +13,9 @@ using System.Windows.Shapes;
 
 namespace CKK.UI
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+     //<summary>
+     //Interaction logic for MainWindow.xaml
+     //</summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -29,8 +30,8 @@ namespace CKK.UI
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Store tp = (Store)Application.Current.FindResource("GlobStore");
-            InventoryDis inven=new InventoryDis(tp);
+            //Store tp = (Store)Application.Current.FindResource("GlobStore");
+            InventoryDis inven = new InventoryDis();
             inven.Show();
             this.Close();
         }
