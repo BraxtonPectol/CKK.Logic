@@ -1,10 +1,10 @@
-﻿@page "/shoppingcart"
+﻿@page "/shop"
 
 @using CKK.DB.UOW;
 @using CKK.Logic.Models;
 @using CKK.DB.Interfaces;
 @inject NavigationManager NavManager
-@if(uow==null)
+@if (uow == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -46,7 +46,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        if(uow != null) //valid uow
+        if (uow != null) //valid uow
         {
             order = uow.Orders.GetById(1);
             if (order == null) //Make new order when no active orders found
@@ -89,9 +89,6 @@ else
         uow.ShoppingCarts.ClearCart(order.ShoppingCartId);
 
         UpdateTotal();
-        for (int i = 0; i < 20; i++){
-            uow.ShoppingCarts.ClearCart(i);
-        }
-    NavManager.NavigateTo("/checkout");
+        NavManager.NavigateTo("/checkout");
     }
 }
