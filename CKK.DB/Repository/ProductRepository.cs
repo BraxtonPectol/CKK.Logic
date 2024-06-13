@@ -88,5 +88,26 @@ namespace CKK.DB.Repository
         {
             throw new NotImplementedException();
         }
+        public List<Product> GetByPrice(double price)
+        {
+            var sql = "SELECT * FROM Products WHERE Price = @Price";
+            using (var connection = _connectionFactory.GetConnection)
+            {
+                connection.Open();
+                var result = connection.Query<Product>(sql, new { Price = price }).ToList();
+                return result;
+            }
+        }
+        public List<Product> GetByQuantity(int quantity)
+        {
+            var sql = "SELECT * FROM Products WHERE Quantity = @Quantity";
+            using (var connection = _connectionFactory.GetConnection)
+            {
+                connection.Open();
+                var result = connection.Query<Product>(sql, new { Quantity = quantity }).ToList();
+                return result;
+            }
+        }
+
     }
 }

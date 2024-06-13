@@ -1,4 +1,5 @@
 ﻿using CKK.DB.Interfaces;
+using CKK.Logic.Interfaces;
 using CKK.Logic.Models;
 using Dapper;
 using System;
@@ -47,7 +48,7 @@ namespace CKK.DB.Repository
                     if (ProductItems != null)
                     {
                         //Product already in cart so update quantity
-                        var test = UpdateAsync(shopitem);
+                        var test = Update(shopitem);
                     }
                     else
                     {
@@ -58,7 +59,32 @@ namespace CKK.DB.Repository
                 return shopitem;
             }
         }
+    public int Update(ShoppingCartItem entity)
+        {
+            var sql = "UPDATE ShoppingCartItems SET ShoppingCartId = @ShoppingCartId, ProductId = @ProductId, Quantity = @Quantity WHERE ShoppingCartId = @ShoppingCartId AND ProductId = @ProductId";
+            using (var connection = _connectionFactory.GetConnection)
+            {
+                connection.Open();
+                var result = connection.Execute(sql, entity);
+                return result;
+            }
+        }
 
+        private object AddAsync(ShoppingCartItem shopitem)
+        {
+            var sql = "Insert into ShoppingCartItems (ShoppingCartId,ProductId,Quantity) VALUES (@ShoppingCartId, @ProductId, @Quantity)";
+            using (var connection = _connectionFactory.GetConnection)
+            {
+                connection.Open();
+                var result = connection.Execute(sql, shopitem);
+                return result;
+            }
+        }
+
+        private object UpdateAsync(ShoppingCartItem shopitem)
+        {
+            throw new NotImplementedException();
+        }
         
 
         public int ClearCart(int shoppingCartId)
@@ -95,7 +121,14 @@ namespace CKK.DB.Repository
             }
             foreach(var item in list)
             {
-                result += item.GetTotal();
+                var q = "SELECT Price FROM Products Where ProductId = @Id";
+                using (var connection = _connectionFactory.GetConnection)
+                {
+                    connection.Open();
+                    List<Product> x = connection.Query<Product>(q, new { Id = item.ProductId }).ToList();
+                    result += item.GetTotal(x[0].Price);
+                }
+                
             }
             return result;
         }
@@ -105,25 +138,6 @@ namespace CKK.DB.Repository
             throw new NotImplementedException();
         }
 
-        public int Update(ShoppingCartItem entity)
-        {
-            var sql = "UPDATE ShoppingCartItems SET ShoppingCartId = @ShoppingCartId, ProductId = @ProductId, Quantity = @Quantity WHERE ShoppingCartId = @ShoppingCartId AND ProductId = @ProductId";
-            using (var connection = _connectionFactory.GetConnection)
-            {
-                connection.Open();
-                var result = connection.Execute(sql, entity);
-                return result;
-            }
-        }
-
-        private object AddAsync(ShoppingCartItem shopitem)
-        {
-            throw new NotImplementedException();
-        }
-
-        private object UpdateAsync(ShoppingCartItem shopitem)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

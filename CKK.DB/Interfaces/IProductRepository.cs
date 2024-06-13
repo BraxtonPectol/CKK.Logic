@@ -9,5 +9,7 @@ namespace CKK.DB.Interfaces
     public interface IProductRepository<Product> : IGenericRepository<Product> where Product : class
     {
         List<Product> GetByName(string name);
+        List<Product> GetByPrice(double price);
+        List<Product> GetByQuantity(int quantity);
     }
 }

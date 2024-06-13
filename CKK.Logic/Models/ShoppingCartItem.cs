@@ -5,14 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace CKK.Logic.Models
 {
     [Serializable]
 
     public class ShoppingCartItem : InventoryItem
     {
-        public Product Product { get; set; }
+        //public Product Product { get; set; }
         public int ShoppingCartId { get; set; }
         public int CustomerId { get; set; }
         public int ProductId { get; set; }
@@ -35,9 +34,9 @@ namespace CKK.Logic.Models
                 }
             }
         }
-        public decimal GetTotal()
+        public decimal GetTotal(decimal Price)
         {
-            return Product.Price * Quantity;
+            return Price * Quantity;
         }
     }
 }

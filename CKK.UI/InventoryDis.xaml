@@ -8,9 +8,9 @@
         Title="InventoryDis" Height="450" Width="800">
     <Grid>
         <TextBox x:Name="SearchByName" HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" KeyDown="SearchByName_KeyDown"/>
-        <TextBox x:Name="SearchId" HorizontalAlignment="Left" Margin="10,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" KeyDown="SearchId_KeyDown"/>
-        <Label Content="Search by name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.419,0.255"/>
-        <Label Content="Search by id" HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="SearchById" HorizontalAlignment="Left" Margin="10,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" KeyDown="SearchId_KeyDown"/>
+        <Label Content="Search by Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.419,0.255"/>
+        <Label Content="Search by Id" HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top"/>
         <Button x:Name="AddNewProductBut" Content="Add new product" HorizontalAlignment="Left" Margin="10,367,0,0" VerticalAlignment="Top" Click="AddNewProductBut_Click" />
         <Button x:Name="RemoveProductBut" Content="Remove product" HorizontalAlignment="Left" Margin="111,367,0,0" VerticalAlignment="Top" Click="RemoveProductBut_Click"/>
         <ListView x:Name="bInventoryList" Margin="10,105,10,72">

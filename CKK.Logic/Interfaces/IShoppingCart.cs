@@ -83,11 +83,11 @@ namespace CKK.Logic.Interfaces
 
 
         //}
-        public decimal GetTotal()
-        {
-            decimal total = Products.Sum(x => x.GetTotal());
-            return total;
-        }
+        //public decimal GetTotal()
+        //{
+        //    decimal total = Products.Sum(x => x.GetTotal());
+        //    return total;
+        //}
         public List<ShoppingCartItem> GetProducts()
         {
             return Products;
