@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CKK.Logic.Models
 {
+    //order model
     public class Order
     {
         public int OrderId { get; set; }
