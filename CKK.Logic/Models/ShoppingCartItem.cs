@@ -9,9 +9,9 @@ namespace CKK.Logic.Models
 {
     [Serializable]
 
+    //shoppingcart model
     public class ShoppingCartItem : InventoryItem
     {
-        //public Product Product { get; set; }
         public int ShoppingCartId { get; set; }
         public int CustomerId { get; set; }
         public int ProductId { get; set; }

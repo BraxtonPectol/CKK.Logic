@@ -10,6 +10,7 @@ namespace CKK.Logic.Interfaces
 {
     [Serializable]
 
+    //interface for InventoryItem
     public abstract class InventoryItem
     {
         private Product product;

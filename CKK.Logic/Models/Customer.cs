@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace CKK.Logic.Models
 {
     [Serializable]
+    //customer model
     public class Customer
     {
         public int Id { get; set; }

@@ -9,8 +9,8 @@ namespace CKK.DB.Interfaces
 {
     public interface IUnitOfWork
     {
-        IProductRepository<Product> Products { get; }
-        IOrderRepository<Order> Orders { get; }
+        IProductRepository Products { get; }
+        IOrderRepository Orders { get; }
         IShoppingCartRepository ShoppingCarts { get; }
     }
 }

@@ -12,13 +12,16 @@ namespace CKK.DB.UOW
 {
     public class DatabaseConnectionFactory : IConnectionFactory
     {
+        //return connection string
         public static string CnnVal(string name)
         {
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
 
+        //initialize connection string
         private readonly string connectionString = "Data Source = (localdb)\\MSSQLLocalDB;Initial Catalog = StructuredProjectDB";
         
+        //create connection
         public IDbConnection GetConnection
         {
             get
@@ -28,7 +31,6 @@ namespace CKK.DB.UOW
                 var factory = DbProviderFactories.GetFactory("System.Data.SqlClient");
                 var conn = factory.CreateConnection();
                 conn.ConnectionString = connectionString;
-                //conn.Open();
                 return conn;
             }
         }

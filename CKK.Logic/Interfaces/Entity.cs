@@ -10,6 +10,7 @@ namespace CKK.Logic.Interfaces
 {
     [Serializable]
 
+    //entity intervace
     public abstract class Entity
     {
         private int id;
