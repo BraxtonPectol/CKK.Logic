@@ -10,5 +10,7 @@ namespace CKK.DB.Interfaces
     public interface IOrderRepository
     {
         Order GetById(int id);
+        public int Add(Order entity);
+        public int Delete(int id);
     }
 }

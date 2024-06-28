@@ -1,4 +1,4 @@
-﻿@page "/shop"
+﻿
 
 @using CKK.DB.UOW;
 @using CKK.Logic.Models;
@@ -11,7 +11,7 @@
 else
 {
     <div class="text-center">
-        <h1 class="display-4">Shopping Cart!</h1>
+        <h1 class="display-4">Shop</h1>
     </div>
     <form method="get">
         <input type="hidden" value="@order.OrderId" />
@@ -34,7 +34,7 @@ else
         </div>
         <p>The CheckOut button removes inventory based on your shopping cart and deletes your order and shopping card.</p>
     </form>
-    <a id="CheckoutBtn" @onclick="CheckOut" class="btn btn-success btn-lg btn-block">@checkoutTotal</a>
+    <a>@checkoutTotal</a>
 }
 
 <h3>ShoppingCart</h3>

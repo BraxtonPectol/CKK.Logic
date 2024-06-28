@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CKK.DB.Interfaces
 {
-    public interface IProductRepository//<Product> : IGenericRepository<Product> where Product : class
+    public interface IProductRepository
     {
         List<Product> GetByName(string name);
         List<Product> GetByPrice(double price);
@@ -16,5 +16,6 @@ namespace CKK.DB.Interfaces
         Product GetById(int id);
         int Add(Product entity);
         int Delete(int id);
+        public int Update(Product entity);
     }
 }
