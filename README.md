@@ -1,0 +1,1 @@
+This project is a culmination of my skills in back end and front end development and showcases the knowledge I aquired over my two years at Ogden Weber Tech and beyond that. It features a basic inventory management system along with storefront UI built with Blazor.
